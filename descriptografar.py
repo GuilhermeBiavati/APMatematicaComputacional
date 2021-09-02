@@ -21,7 +21,7 @@ def binaryToDecimal(binary):
 # Receber as informações necesarias
 
 
-print('Informe a mensagem: ')
+print('Informe a mensagem criptografada: ')
 mensagem = str(input())
 print('Informe a chave: ')
 chave = str(input())
