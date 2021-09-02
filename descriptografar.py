@@ -1,6 +1,10 @@
 
+# função para converter de decimal para binario
+
 def decToBin(num):
     return bin(num).replace("0b", '').zfill(8)
+
+# função para converter de binario para decimal
 
 
 def binaryToDecimal(binary):
@@ -14,38 +18,52 @@ def binaryToDecimal(binary):
         i += 1
     return decimal
 
+# Receber as informações necesarias
+
 
 print('Informe a mensagem: ')
-mensagem = str(raw_input())
+mensagem = str(input())
 print('Informe a chave: ')
 chave = str(input())
 
+# iniciando as variaveis
 
+# polula lista com os caracteres asc2 em binario vindos da mensagem
 mensagemlistbinary = list(map(''.join, zip(*[iter(mensagem)]*8)))
-
-
 chavelista = list(chave)
-
 chavelistaasc = []
 chavelistbinary = []
+chavedescriptografada = ""
+listchavedescriptografadaasc = []
+mensagemdescriptografada = ""
+
+# popular lista  com caracteres da chave para asc2
+
 
 for i in range(len(chavelista)):
     chavelistaasc.append(ord(chavelista[i]))
 
+# popular lista da chave com caracteres asc2 para binario
 
 for i in range(len(chavelistaasc)):
     chavelistbinary.append(decToBin(chavelistaasc[i]))
 
+# Loop passa em cada item da lista binaria na mensagem
 
-chavedescriptografada = ""
-
+index = 0
 for i in range(len(mensagemlistbinary)):
-    listItem = list(mensagemlistbinary[i])
 
-    if i > len(chavelistbinary)-1:
-        listItemChave = list(chavelistbinary[0])
+    # separa binario em uma nova lista tanto da mensagem quanto da chave
+    listItem = list(mensagemlistbinary[i])
+    listItemChave = list(chavelistbinary[index])
+
+    # quando a mensagem é maior que a chave é necessario preencher-la repetindo chave
+    if i >= (len(chavelistbinary) - 1):
+        index = 0
     else:
-        listItemChave = list(chavelistbinary[i])
+        index += 1
+
+    # Loop passa em cada caracter da mensagem e da cheve fazendo a operação ou exclusiva e concatenando os resultados em uma variavel
 
     for i in range(len(listItem)):
 
@@ -64,19 +82,20 @@ for i in range(len(mensagemlistbinary)):
         else:
             chavedescriptografada += "0"
 
-listchavedescriptografadaasc = []
-
+# polula lista com os caracteres asc2 em binario vindos da mensagem descriptografada
 chavedescriptografada = list(
     map(''.join, zip(*[iter(chavedescriptografada)]*8)))
 
+# polula lista com os caracteres binario para asc2 vindos da mensagem descriptografada
 
 for i in range(len(chavedescriptografada)):
     listchavedescriptografadaasc.append(
         binaryToDecimal(int(chavedescriptografada[i])))
 
-mensagemdescriptografada = ""
+# contatena na variavel a converção dos caracateres em asc2 para texto assim resultando na mensagem original
 
 for i in range(len(listchavedescriptografadaasc)):
     mensagemdescriptografada += chr(int(listchavedescriptografadaasc[i]))
 
+# printa a mensagem
 print(mensagemdescriptografada)
