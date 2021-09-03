@@ -4,30 +4,32 @@ print('Informe a mensagem criptografada: ')
 mensagemcriptografada = str(input())
 print('Informe a chave: ')
 chave = str(input())
-
+# Transforma tanto a chave quanto a mensagem em listas
 mensagemcriptografadalista = list(mensagemcriptografada)
 chavelista = list(chave)
 
-# polula lista com os caracteres asc2 em binario vindos da mensagem
+# transforma a lista anterior em asc2
 mensagemcriptografadalistasc = textListToAscList(mensagemcriptografadalista)
 
+# transforma a lista em asc2 para binario
 mensagemcriptografadalistbinary = asctListToBinaryList(
     mensagemcriptografadalistasc)
 
-# popular lista  com caracteres da chave para asc2
+# transforma a lista anterior em asc2
 chavelistaasc = textListToAscList(chavelista)
 
-# popular lista da chave com caracteres asc2 para binario
+# transforma a lista em asc2 para binario
 chavelistbinary = asctListToBinaryList(chavelistaasc)
 
+# passa cada caracter das listas comparando usando o xor e retornando uma lista de binarios já criptografados
 mensagemdescriptografadalistbinary = encrypt(
     mensagemcriptografadalistbinary, chavelistbinary)
 
-# polula lista com os caracteres binario para asc2 vindos da mensagem descriptografada
+# converte a mensagem criptografada para asc2
 listchavedescriptografadaasc = binaryListTosctList(
     mensagemdescriptografadalistbinary)
 
-# contatena na variavel a converção dos caracateres em asc2 para texto assim resultando na mensagem original
+# transforma para texto e concatena a mensagem
 mensagemdescriptografada = ascListToString(listchavedescriptografadaasc)
 # printa a mensagem
 print("Mensagem descriptografada")

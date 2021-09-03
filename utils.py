@@ -14,33 +14,32 @@ def binaryToDecimal(binary):
         binary = binary//10
         i += 1
     return decimal
+# converte caracteres da lista para asc2
 
 
 def textListToAscList(textList):
     ascList = []
-
     for i in range(len(textList)):
         ascList.append(ord(textList[i]))
-
     return ascList
+# converte caracteres asc2 da lista para binario
 
 
 def asctListToBinaryList(ascList):
     binaryList = []
-
     for i in range(len(ascList)):
         binaryList.append(decToBin(int(ascList[i])))
-
     return binaryList
+# converte caracteres binarios da lista para asc2
 
 
 def binaryListTosctList(binarycList):
     ascList = []
-
     for i in range(len(binarycList)):
         ascList.append(binaryToDecimal(int(binarycList[i])))
-
     return ascList
+
+# converte caracteres asc2 da lista para uma string
 
 
 def ascListToString(ascList):
@@ -49,9 +48,10 @@ def ascListToString(ascList):
         string += chr(int(ascList[i]))
     return string
 
+# gera a criptografia e retorna uma listacom caracteres binarios
+
 
 def encrypt(mesageBinaryList, keyBinaryList):
-
     decryptBinaryList = []
     index = 0
     for i in range(len(mesageBinaryList)):
